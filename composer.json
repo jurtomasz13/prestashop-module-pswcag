@@ -1,0 +1,23 @@
+{
+  "name": "prestashop/pswcag",
+  "description": "PrestaShop module to help with WCAG compliance",
+  "license": "AFL-3.0",
+  "authors": [
+    {
+      "name": "Tomasz Jurek"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "PrestaShop\\Module\\Pswcag\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=7.1.0"
+  },
+  "config": {
+    "preferred-install": "dist",
+    "prepend-autoloader": false
+  },
+  "type": "prestashop-module"
+}
