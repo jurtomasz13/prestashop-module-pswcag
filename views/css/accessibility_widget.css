@@ -1,0 +1,138 @@
+:root {
+  --pswcag-modal-margin: 1.5rem;
+  --pswcag-modal-padding: 1rem;
+  --pswcag-desktop-modal-height: 400px;
+  --pswcag-desktop-modal-width: 400px;
+}
+
+#pswcag-accessibility-widget {
+  position: fixed;
+  bottom: var(--pswcag-modal-margin);
+  right: var(--pswcag-modal-margin);
+  background-color: black;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#pswcag-accessibility-widget #pswcag-open-settings {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#pswcag-accessibility-widget #pswcag-open-settings:focus {
+  outline: 4px solid black;
+}
+
+#pswcag-settings {
+  position: fixed;
+  width: var(--pswcag-desktop-modal-width);
+  height: var(--pswcag-desktop-modal-height);
+  bottom: var(--pswcag-modal-margin);
+  right: var(--pswcag-modal-margin);
+  padding: var(--pswcag-modal-padding);
+  overflow-y: auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  #pswcag-settings {
+    width: calc(100vw - 2 * var(--pswcag-modal-margin));
+    height: calc(100vh - 2 * var(--pswcag-modal-margin));
+    bottom: var(--pswcag-modal-margin);
+    right: var(--pswcag-modal-margin);
+  }
+}
+
+.pswcag-settings-label {
+  display: flex;
+  color: #000000;
+}
+
+.pswcag-settings-label .pswcag-settings-reset {
+  margin-left: auto;
+  margin-right: 1rem;
+}
+
+#pswcag-settings:target {
+  display: block;
+}
+
+#pswcag-close-settings {
+  top: 10px;
+  right: 10px;
+  color: #000;
+  cursor: pointer;
+}
+
+#pswcag-submit-settings {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  margin-top: 30px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pswcag-option-label {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  margin-right: 0.5rem;
+  margin-bottom: 0;
+  padding-top: 10px;
+  color: #000000;
+  user-select: none;
+}
+
+.pswcag-option-title {
+  margin-bottom: 0;
+}
+
+.pswcag-tabs label h3 {
+  margin: 0;
+  margin-left: 10px;
+}
+
+.pswcag-tabs label:not(:first-child) {
+  margin-top: 1rem;
+}
+
+.pswcag-tabs input[type="radio"] {
+  display: none;
+}
+
+.pswcag-tab-line {
+  margin-bottom: 0.5rem;
+}
+
+.pswcag-input-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+  user-select: none;
+}
+
+.pswcag-input-icon {
+  font-size: 16px;
+}
+
+.pswcag-input-text {
+  margin: 0 0.5rem;
+  font-weight: 600;
+}

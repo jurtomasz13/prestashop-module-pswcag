@@ -38,6 +38,8 @@ class Pswcag extends Module {
     {
         return parent::install() 
             && $this->registerHook('displayTop')
+            && $this->registerHook('displayHeader')
+            && $this->registerHook('actionFrontControllerSetMedia')
             && Configuration::updateValue('PSWCAG', 'Pswcag');
     }
 
@@ -45,11 +47,56 @@ class Pswcag extends Module {
     {
         return parent::uninstall() 
             && $this->unregisterHook('displayTop')
+            && $this->registerHook('displayHeader')
+            && $this->registerHook('actionFrontControllerSetMedia')
             && Configuration::deleteByName('PSWCAG');
     }
 
     public function hookDisplayTop()
     {
-        return 'hello';
+        $this->context->smarty->assign([
+        ]);
+
+        return $this->fetch('module:pswcag/views/templates/hook/accessibility_widget.tpl');
+    }
+
+    public function hookDisplayHeader()
+    {
+        if (isset($_COOKIE['noscript_user']) && $_COOKIE['noscript_user'] === 1) {
+            return $this->fetch('module:pswcag/views/templates/hook/dynamic_css_variables.tpl');
+        }
+    }
+
+    public function hookActionFrontControllerSetMedia()
+    {
+        // Fonts CSS
+        $this->context->controller->registerStylesheet(
+            'module-pswcag-fonts',
+            'modules/' . $this->name . '/views/css/fonts.css',
+            [
+                'media' => 'all',
+                'priority' => 200,
+            ]
+        );
+
+        // Accessibility widget CSS
+        $this->context->controller->registerStylesheet(
+            'module-pswcag-accessibility-widget',
+            'modules/' . $this->name . '/views/css/accessibility_widget.css',
+            [
+                'media' => 'all',
+                'priority' => 200,
+            ]
+        );
+
+        // Accessibility widget JS
+        $this->context->controller->registerJavascript(
+            'module-pswcag-accessibility-widget',
+            'modules/' . $this->name . '/views/css/accessibility_widget.css',
+            [
+                'media' => 'all',
+                'priority' => 200,
+            ]
+        );
     }
 }
